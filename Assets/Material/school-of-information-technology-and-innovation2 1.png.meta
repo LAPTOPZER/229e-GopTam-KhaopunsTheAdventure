@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      school-of-information-technology-and-innovation2 1_0: 7310919480725637234
+      school-of-information-technology-and-innovation2 1_1: -471031511481174401
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

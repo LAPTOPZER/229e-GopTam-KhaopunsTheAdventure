@@ -20,15 +20,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        /*moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), 0 *//*Input.GetAxisRaw("Vertical")*//*);
-        rb2d.AddForce(moveInput * speed);*/
-
-        /*        move = Input.GetAxis("Horizontal");
-                rb2d.linearVelocity = new Vector2(move * speed, rb2d.linearVelocity.y);*/
-
         move = Input.GetAxisRaw("Horizontal");
         FlipSprite();
-        rb2d.velocity = new Vector2(move * speed, rb2d.velocity.y);
+        rb2d.linearVelocity = new Vector2(move * speed, rb2d.linearVelocity.y);
 
         if (Input.GetButtonDown("Jump") && !isJump)
         {
