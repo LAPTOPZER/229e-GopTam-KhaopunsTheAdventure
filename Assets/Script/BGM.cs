@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class BGM : MonoBehaviour
 {
-    public static BGM instance;
-    public AudioSource bgmSource;
+
+    public AudioSource bgMusic;
+    private static BGM instance;
 
     private void Awake()
     {
@@ -15,14 +16,20 @@ public class BGM : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
+
+        if (bgMusic == null)
+            bgMusic = GetComponent<AudioSource>();
     }
 
-    private void Start()
+    public void ToggleMusic()
     {
-        if (!bgmSource.isPlaying)
-        {
-            bgmSource.Play();
-        }
+        if (bgMusic == null) return;
+
+        if (bgMusic.isPlaying)
+            bgMusic.Pause();
+        else
+            bgMusic.Play();
     }
 }
