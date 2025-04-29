@@ -8,6 +8,7 @@ public class MenuUIHandler : MonoBehaviour
 
     public void StartGame()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Game");
     }
 
@@ -35,5 +36,4 @@ public class MenuUIHandler : MonoBehaviour
 #endif
 
     }
-
 }

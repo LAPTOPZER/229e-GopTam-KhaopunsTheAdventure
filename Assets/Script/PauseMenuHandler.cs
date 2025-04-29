@@ -22,7 +22,6 @@ public class PauseMenuHandler : MonoBehaviour
             else
             {
                 Pause();
-                Debug.Log("Pause");
             }
         }
     }

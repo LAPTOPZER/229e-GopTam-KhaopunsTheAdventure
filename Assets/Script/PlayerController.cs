@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb2d;
-    //Vector2 moveInput;
     private SpriteRenderer spriteRenderer;
 
     float move;
@@ -12,6 +11,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] bool isJump;
 
+    [SerializeField]private GameObject Win;
+
+    private void Awake()
+    {
+        Win.SetActive(false);
+    }
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -21,13 +26,23 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         move = Input.GetAxisRaw("Horizontal");
-        FlipSprite();
-        rb2d.linearVelocity = new Vector2(move * speed, rb2d.linearVelocity.y);
 
+        FlipSprite();
+        HandleMovement();
+        HandleJump();
+    }
+
+    private void HandleMovement()
+    {
+        rb2d.linearVelocity = new Vector2(move * speed, rb2d.linearVelocity.y);
+    }
+
+    private void HandleJump()
+    {
         if (Input.GetButtonDown("Jump") && !isJump)
         {
-            rb2d.AddForce(new Vector2(rb2d.linearVelocity.x, jumpForce));
-            Debug.Log("Jump");
+            rb2d.AddForce(Vector2.up * jumpForce);
+            isJump = true;
         }
     }
 
@@ -53,5 +68,21 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.flipX = false;
         else if (move < 0)
             spriteRenderer.flipX = true;
+    }
+
+
+    // Win UI
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("House"))
+        {
+            ShowUI();
+        }
+    }
+
+    private void ShowUI()
+    {
+        Time.timeScale = 0f;
+        Win.SetActive(true);
     }
 }
