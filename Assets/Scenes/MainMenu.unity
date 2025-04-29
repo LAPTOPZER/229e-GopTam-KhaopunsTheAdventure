@@ -1292,8 +1292,9 @@ GameObject:
   - component: {fileID: 867119478}
   - component: {fileID: 867119477}
   - component: {fileID: 867119476}
+  - component: {fileID: 867119479}
   m_Layer: 5
-  m_Name: BG Music
+  m_Name: BGM Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1401,6 +1402,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867119474}
   m_CullTransparentMesh: 1
+--- !u!114 &867119479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867119474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6223ab2a4c044ea50ae19db00896d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1160623639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,7 +1510,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1237131786
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1513,7 +1526,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.155
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1607,7 +1620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 051d09b7b22ec6146b72e74af4a4836c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSource: {fileID: 1237131786}
+  bgMusic: {fileID: 1237131786}
 --- !u!4 &1237131788
 Transform:
   m_ObjectHideFlags: 0
