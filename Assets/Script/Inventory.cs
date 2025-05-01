@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour
     private void UpdateUI()
     {
         if (pointText != null)
-            pointText.text = $"x {pointCount}";
+            pointText.text = $"{pointCount}/10";
 
         if (ammoText != null)
             ammoText.text = $"x {ammoCount}";
