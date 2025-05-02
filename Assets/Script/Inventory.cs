@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance { get; private set; }
 
     public int pointCount = 0;
-    public int ammoCount = 0;
+    public int ammoCount = 1;
 
     public TMP_Text pointText;
     public TMP_Text ammoText;
@@ -42,7 +42,7 @@ public class Inventory : MonoBehaviour
         UpdateUI();
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         if (pointText != null)
             pointText.text = $"{pointCount}/10";

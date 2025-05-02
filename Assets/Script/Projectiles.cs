@@ -6,25 +6,31 @@ public class Projectiles : MonoBehaviour
     [SerializeField] GameObject target;
     [SerializeField] Rigidbody2D bulletPrefab;
 
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Debug.DrawRay(ray.origin, ray.direction * 5f, Color.red, 5f);
-
-            RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
-            if (hit.collider != null)
+            if (Inventory.Instance.ammoCount > 0)
             {
-                target.transform.position = new Vector2(hit.point.x, hit.point.y);
-                Debug.Log("hit " + hit.collider.name);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Debug.DrawRay(ray.origin, ray.direction * 5f, Color.red, 5f);
 
-                Vector2 projectileVelocity = CalculateProjectileVelocity(shootPoint.position, hit.point, 1f);
+                RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
+                if (hit.collider != null)
+                {
+                    target.transform.position = new Vector2(hit.point.x, hit.point.y);
+                    Debug.Log("hit " + hit.collider.name);
 
-                Rigidbody2D shootBullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+                    Vector2 projectileVelocity = CalculateProjectileVelocity(shootPoint.position, hit.point, 1f);
 
-                shootBullet.linearVelocity = projectileVelocity;
+                    Rigidbody2D shootBullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
 
+                    shootBullet.linearVelocity = projectileVelocity;
+
+                    Inventory.Instance.ammoCount -= 1;
+                    Inventory.Instance.UpdateUI();
+                }
             }
         }
     }

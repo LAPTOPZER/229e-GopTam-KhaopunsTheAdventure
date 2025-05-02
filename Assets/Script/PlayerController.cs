@@ -72,11 +72,16 @@ public class PlayerController : MonoBehaviour
 
 
     // Win UI
+    [SerializeField]private int winScore = 10;
     private void OnTriggerEnter2D(Collider2D other)
     {
+        int currentScore = Inventory.Instance.pointCount;
         if (other.CompareTag("House"))
         {
-            ShowUI();
+            if (currentScore == winScore)
+            {
+                ShowUI();
+            }
         }
     }
 
