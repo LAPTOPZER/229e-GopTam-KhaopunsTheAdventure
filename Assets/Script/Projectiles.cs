@@ -11,8 +11,6 @@ public class Projectiles : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (Inventory.Instance.ammoCount > 0)
-            {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 Debug.DrawRay(ray.origin, ray.direction * 5f, Color.red, 5f);
 
@@ -24,14 +22,17 @@ public class Projectiles : MonoBehaviour
 
                     Vector2 projectileVelocity = CalculateProjectileVelocity(shootPoint.position, hit.point, 1f);
 
-                    Rigidbody2D shootBullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+                    if (Inventory.Instance.ammoCount > 0)
+                    {
+                        Rigidbody2D shootBullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
 
-                    shootBullet.linearVelocity = projectileVelocity;
 
-                    Inventory.Instance.ammoCount -= 1;
+                        shootBullet.linearVelocity = projectileVelocity;
+                        Inventory.Instance.ammoCount -= 1;
+                    }
+
                     Inventory.Instance.UpdateUI();
                 }
-            }
         }
     }
 

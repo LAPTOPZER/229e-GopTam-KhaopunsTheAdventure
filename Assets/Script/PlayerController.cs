@@ -1,21 +1,31 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
+
     Rigidbody2D rb2d;
     private SpriteRenderer spriteRenderer;
+    public TMP_Text hpText;
 
     float move;
     [SerializeField] float speed;
-
     [SerializeField] float jumpForce;
     [SerializeField] bool isJump;
 
-    [SerializeField]private GameObject Win;
+    [SerializeField] GameObject Win;
+    [SerializeField] GameObject Lose;
+
+    [SerializeField] int hp = 100;
+
+    [SerializeField] int winScore = 10;
 
     private void Awake()
     {
         Win.SetActive(false);
+        Lose.SetActive(false);
     }
     void Start()
     {
@@ -52,6 +62,14 @@ public class PlayerController : MonoBehaviour
         {
             isJump = false;
         }
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Mace"))
+        {
+            TakeDamage(20);
+        }
+        if (other.gameObject.CompareTag("Spike"))
+        {
+            TakeDamage(10);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -72,7 +90,6 @@ public class PlayerController : MonoBehaviour
 
 
     // Win UI
-    [SerializeField]private int winScore = 10;
     private void OnTriggerEnter2D(Collider2D other)
     {
         int currentScore = Inventory.Instance.pointCount;
@@ -80,14 +97,27 @@ public class PlayerController : MonoBehaviour
         {
             if (currentScore == winScore)
             {
-                ShowUI();
+                Time.timeScale = 0f;
+                Win.SetActive(true);
             }
         }
     }
 
-    private void ShowUI()
+
+    //Lose
+    public void TakeDamage(int damage)
     {
-        Time.timeScale = 0f;
-        Win.SetActive(true);
+        hp -= damage;
+            if (hp <= 0)
+            {
+                Time.timeScale = 0f;
+                Lose.SetActive(true);
+                Destroy(this.gameObject);
+            }
+        Debug.Log(hp);
+
+        if (hpText != null)
+            hpText.text = $"{hp}";
     }
+
 }

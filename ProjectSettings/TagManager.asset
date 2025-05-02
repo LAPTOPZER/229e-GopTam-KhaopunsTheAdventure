@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - House
   - Enemy
+  - Mace
+  - Spike
   layers:
   - Default
   - TransparentFX
