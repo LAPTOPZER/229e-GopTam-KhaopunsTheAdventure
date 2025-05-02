@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController instance;
-
 
     Rigidbody2D rb2d;
     private SpriteRenderer spriteRenderer;
@@ -16,7 +14,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool isJump;
 
     [SerializeField] GameObject Win;
+    [SerializeField] GameObject winSFX;
     [SerializeField] GameObject Lose;
+    [SerializeField] GameObject loseSFX;
+
+    [SerializeField] GameObject hurtSFX;
 
     [SerializeField] int hp = 100;
 
@@ -64,10 +66,14 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Mace"))
         {
+            GameObject hurtFX = Instantiate(hurtSFX, transform.position, Quaternion.identity);
+            Destroy(hurtFX, hurtFX.GetComponent<AudioSource>().clip.length);
             TakeDamage(20);
         }
         if (other.gameObject.CompareTag("Spike"))
         {
+            GameObject hurtFX = Instantiate(hurtSFX, transform.position, Quaternion.identity);
+            Destroy(hurtFX, hurtFX.GetComponent<AudioSource>().clip.length);
             TakeDamage(10);
         }
     }
@@ -97,6 +103,8 @@ public class PlayerController : MonoBehaviour
         {
             if (currentScore == winScore)
             {
+                GameObject winFX = Instantiate(winSFX, transform.position, Quaternion.identity);
+                Destroy(winFX, winFX.GetComponent<AudioSource>().clip.length);
                 Time.timeScale = 0f;
                 Win.SetActive(true);
             }
@@ -111,6 +119,8 @@ public class PlayerController : MonoBehaviour
         if (hp <= 0)
         {
             Time.timeScale = 0f;
+            GameObject loseFX = Instantiate(loseSFX, transform.position, Quaternion.identity);
+            Destroy(loseFX, loseFX.GetComponent<AudioSource>().clip.length);
             Lose.SetActive(true);
             Destroy(this.gameObject);
         }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6541281527210862554}
   - component: {fileID: 1947754424721652078}
   - component: {fileID: 250646324731501187}
+  - component: {fileID: -5163627235726707480}
   m_Layer: 0
   m_Name: Gem Point
   m_TagString: Untagged
@@ -166,3 +167,18 @@ PolygonCollider2D:
       - {x: 0.06639004, y: 0.027955493}
       - {x: 0.035607357, y: 0.057172768}
   m_UseDelaunayMesh: 0
+--- !u!114 &-5163627235726707480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7315654677414787644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6779be7ed0b5c4942aafdcbde3cfbae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUpSFX: {fileID: 1297954914487598703, guid: 08d9478f3f1df644fbfb3419f077c5a1, type: 3}
+  itemType: 0
+  amount: 1

@@ -137,5 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6779be7ed0b5c4942aafdcbde3cfbae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickUpSFX: {fileID: 1297954914487598703, guid: 08d9478f3f1df644fbfb3419f077c5a1, type: 3}
   itemType: 1
   amount: 1

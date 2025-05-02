@@ -12,8 +12,8 @@ public class Bullet : MonoBehaviour
 
         if (collision.CompareTag("Enemy"))
         {
-            GameObject fx = Instantiate(explosionFX, transform.position, Quaternion.identity);
-            Destroy(fx, 1f);
+            GameObject explosion = Instantiate(explosionFX, transform.position, Quaternion.identity);
+            Destroy(explosion, 1.5f);
             Destroy(this.gameObject);
             Destroy(collision.gameObject);
         }

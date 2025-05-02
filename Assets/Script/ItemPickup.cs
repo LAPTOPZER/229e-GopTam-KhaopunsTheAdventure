@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
+    public GameObject pickUpSFX;
     public ItemType itemType;
     public int amount = 1;
 
@@ -10,6 +11,8 @@ public class ItemPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Inventory.Instance.Collect(itemType, amount);
+            GameObject sfx = Instantiate(pickUpSFX, transform.position, Quaternion.identity);
+            Destroy(sfx, sfx.GetComponent<AudioSource>().clip.length);
             Destroy(gameObject);
         }
     }

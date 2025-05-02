@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class BGM : MonoBehaviour
 {
@@ -32,4 +33,5 @@ public class BGM : MonoBehaviour
         else
             bgMusic.Play();
     }
+
 }
