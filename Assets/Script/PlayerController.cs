@@ -108,12 +108,12 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         hp -= damage;
-            if (hp <= 0)
-            {
-                Time.timeScale = 0f;
-                Lose.SetActive(true);
-                Destroy(this.gameObject);
-            }
+        if (hp <= 0)
+        {
+            Time.timeScale = 0f;
+            Lose.SetActive(true);
+            Destroy(this.gameObject);
+        }
         Debug.Log(hp);
 
         if (hpText != null)
