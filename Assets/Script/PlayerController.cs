@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject loseSFX;
 
     [SerializeField] GameObject hurtSFX;
+    [SerializeField] GameObject jumpSFX;
 
     [SerializeField] int hp = 100;
 
@@ -53,6 +54,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && !isJump)
         {
+            GameObject jumpFX = Instantiate(jumpSFX, transform.position, Quaternion.identity);
+            Destroy(jumpFX, jumpFX.GetComponent<AudioSource>().clip.length);
             rb2d.AddForce(Vector2.up * jumpForce);
             isJump = true;
         }
