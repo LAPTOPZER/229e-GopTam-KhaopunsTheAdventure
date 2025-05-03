@@ -9,9 +9,25 @@ public class MenuUIHandler : MonoBehaviour
 
     public void StartGame()
     {
+        if (Inventory.Instance != null)
+        {
+            Destroy(Inventory.Instance.gameObject);
+        }
+
         Time.timeScale = 1f;
         SceneManager.LoadScene("Game");
     }
+
+    //public void RestartGame()
+    //{
+    //    if (Inventory.Instance != null)
+    //    {
+    //        Destroy(Inventory.Instance.gameObject);
+    //    }
+
+    //    Time.timeScale = 1f;
+    //    SceneManager.LoadScene("Game");
+    //}
 
     public void Credit()
     {
@@ -20,6 +36,11 @@ public class MenuUIHandler : MonoBehaviour
 
     public void BacktoMainMenu()
     {
+        if (Inventory.Instance != null)
+        {
+            Destroy(Inventory.Instance.gameObject);
+        }
+
         SceneManager.LoadScene("MainMenu");
     }
 
