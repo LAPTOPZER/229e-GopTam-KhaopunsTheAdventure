@@ -7,11 +7,13 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb2d;
     private SpriteRenderer spriteRenderer;
     public TMP_Text hpText;
+    private Animator animator;
 
     float move;
     [SerializeField] float speed;
     [SerializeField] float jumpForce;
     [SerializeField] bool isJump;
+    [SerializeField] bool isRunning;
 
     [SerializeField] GameObject Win;
     [SerializeField] GameObject winSFX;
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -47,6 +50,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement()
     {
+        isRunning = Mathf.Abs(move) > 0.1f;
+        animator.SetBool("IsRunning", isRunning);
         rb2d.linearVelocity = new Vector2(move * speed, rb2d.linearVelocity.y);
     }
 
